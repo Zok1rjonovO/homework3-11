@@ -49,7 +49,7 @@ function renderignFunc(array , element) {
         
         newLi.setAttribute("class", "flex gap-16");
         newCheckbox.setAttribute("type", "checkbox");
-        newButton.setAttribute("class", "bg-red-100");
+        newButton.setAttribute("class", "delbtn");
         
         newButton.dataset.todoID = array[i].id;
         newCheckbox.dataset.todoID = array[i].id;

@@ -8,15 +8,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./style.css">
     <style>
+        *,
+        *::before,
+        *::after{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style-type: none;
+        }
         form{
             padding-top: 30px;
         }
-        
         ul{
             margin: 0 auto;
             padding: 10px 15px;
             gap: 30px;
             background-color: chartreuse !important;
+        }
+        li{
+            align-items: center;
+        }
+        .delbtn{
+            padding: 10px;
+            background-color: red;
         }
     </style>
 </head>
