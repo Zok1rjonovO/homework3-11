@@ -1,25 +1,7 @@
-// let numberArr = [15,23,45,65,89,654];
-
 let elList = document.querySelector("#list")
 let elForm = document.querySelector("#form")
 
-let todosArr = [ 
-    // {
-    //     id: 1,
-    //     todo: "darsga borish",
-    //     isComplate: true,
-    // },
-    // {
-    //     id: 2,
-    //     todo: "darsdan qaytish",
-    //     isComplate: false,
-    // },
-    // {
-    //     id: 3,
-    //     todo: "darsdan qochish",
-    //     isComplate: false,
-    // }
-];
+let todosArr = getLocalStorage() || [];
 
 elForm.addEventListener("submit" , evt =>{
     evt.preventDefault()
@@ -31,6 +13,7 @@ elForm.addEventListener("submit" , evt =>{
         isComplate: false
     };
     todosArr.unshift(newObj);
+    saveLocalStorage(todosArr);
     renderignFunc(todosArr , elList);
     todo.value = null
 })
@@ -58,6 +41,7 @@ function renderignFunc(array , element) {
             let btnID = evt.target.dataset.todoID;
             let found = todosArr.findIndex((item) => item.id == btnID);
             todosArr.splice(found , 1);
+            saveLocalStorage(todosArr);
             renderignFunc(todosArr , elList);
         })
 
@@ -65,6 +49,7 @@ function renderignFunc(array , element) {
             let btnID = evt.target.dataset.todoID;
             let foundtodo = todosArr.find((item) => item.id == btnID);
             foundtodo.isComplate = !foundtodo.isComplate;
+            saveLocalStorage(todosArr);
             renderignFunc(todosArr , elList);
         })
         
@@ -79,3 +64,11 @@ function renderignFunc(array , element) {
     }
 }
 renderignFunc(todosArr , elList);
+
+function saveLocalStorage(value) {
+    window.localStorage.setItem("todos", JSON.stringify(value));
+}
+
+function getLocalStorage(value) {
+   return JSON.parse(window.localStorage.getItem("todos"));
+}
